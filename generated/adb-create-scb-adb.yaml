@@ -1,0 +1,16 @@
+apiVersion: database.oracle.com/v1alpha1
+kind: AutonomousDatabase
+metadata:
+  name: scbadb
+  namespace: cloudbank
+spec:
+  details:
+    compartmentOCID: ocid1.compartment.oc1..aaaaaaaaqhbzavhpwjjlcf43lgkjhhz2qbztfh6xbav24x7kfaxrtxvmgyra
+    dbName: scbadb
+    displayName: scbadb
+    cpuCoreCount: 1
+    adminPassword:
+      k8sSecret:
+        name: admin-password
+
+    dataStorageSizeInTBs: 1
