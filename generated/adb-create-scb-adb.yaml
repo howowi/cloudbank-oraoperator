@@ -1,13 +1,13 @@
 apiVersion: database.oracle.com/v1alpha1
 kind: AutonomousDatabase
 metadata:
-  name: scbadb
+  name: scbadb0403
   namespace: scb
 spec:
   details:
     compartmentOCID: ocid1.compartment.oc1..aaaaaaaarktmcr5is5cyhail3aivtve4jmsfeebczfiaiv6seco52mqjchdq
     dbName: scbadb
-    displayName: scbadb
+    displayName: scbadb-0403
     cpuCoreCount: 1
     adminPassword:
       k8sSecret:
