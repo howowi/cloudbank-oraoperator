@@ -1,0 +1,25 @@
+name: Cloudbank OraOperator
+
+on:
+  push:
+    branches:
+      - main
+      
+jobs:   
+  update_adb_config:
+    env:
+      OCI_CLI_USER: ${{ secrets.OCI_CLI_USER }}
+      OCI_CLI_TENANCY: ${{ secrets.OCI_CLI_TENANCY }}
+      OCI_CLI_FINGERPRINT: ${{ secrets.OCI_CLI_FINGERPRINT }}
+      OCI_CLI_KEY_CONTENT: ${{ secrets.OCI_CLI_KEY_CONTENT }}
+      OCI_CLI_REGION: ${{ secrets.OCI_CLI_REGION }}
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Configure kubectl for OKE
+        uses: oracle-actions/configure-kubectl-oke@v1.3.2
+        with:
+          cluster: ocid1.cluster.oc1.ap-mumbai-1.aaaaaaaaitrjhuwkis7vgzcku5xrk2g6mc2dvrm4qka3resctczgd6yyh2jq
+
+      - name: Update ADB settings
+        run: kubectl apply -f generated/adb-scaleupdown.yaml
