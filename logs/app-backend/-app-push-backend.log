@@ -1,0 +1,21 @@
+The push refers to repository [bom.ocir.io/apaccpt01/cloudbank/64qgtiio/transfer-springboot]
+37e934ee67a3: Preparing
+7b7f3078e1db: Preparing
+826c3ddbb29c: Preparing
+b626401ef603: Preparing
+9b55156abf26: Preparing
+293d5db30c9f: Preparing
+03127cdb479b: Preparing
+9c742cd6c7a5: Preparing
+293d5db30c9f: Waiting
+03127cdb479b: Waiting
+9c742cd6c7a5: Waiting
+826c3ddbb29c: Pushed
+37e934ee67a3: Pushed
+b626401ef603: Pushed
+293d5db30c9f: Pushed
+03127cdb479b: Pushed
+9b55156abf26: Pushed
+9c742cd6c7a5: Pushed
+7b7f3078e1db: Pushed
+0.1: digest: sha256:e16e5a8ca6fd55a087330a4fd349a2020aec272076ab269847cfd5d76e18a332 size: 2007

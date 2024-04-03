@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: banka-springboot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: banka
+  template:
+    metadata:
+      labels:
+        app: banka
+        version: springboot
+    spec:
+      containers:
+      - name: bank
+        image: bom.ocir.io/apaccpt01/cloudbank/64qgtiio/transfer-springboot:0.1
+        imagePullPolicy: Always
+        env:
+        - name: localbankqueueschema
+          value: "aquser"
+        - name: localbankqueuename
+          value: "BANKAQUEUE"
+        - name: remotebankqueueschema
+          value: "aquser"
+        - name: remotebankqueuename
+          value: "BANKBQUEUE"
+        - name: banksubscribername
+          value: "banka_service"
+        - name: bankdbuser
+          value: "bankauser"
+        - name: bankdburl
+          value: "jdbc:oracle:thin:@cbdb64qgtiio_tp?TNS_ADMIN=/msdataworkshop/creds"
+        - name: bankdbpw
+          valueFrom:
+            secretKeyRef:
+              name: admin-password
+              key: admin-password
+              optional: true
+        volumeMounts:
+        - name: creds
+          mountPath: /msdataworkshop/creds
+        ports:
+        - containerPort: 8080
+      restartPolicy: Always
+      volumes:
+      - name: creds
+        secret:
+          secretName: instance-wallet
+      

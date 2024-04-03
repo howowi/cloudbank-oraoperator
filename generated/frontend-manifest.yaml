@@ -1,0 +1,35 @@
+## Copyright (c) 2021 Oracle and/or its affiliates.
+## Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl/
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: bom.ocir.io/apaccpt01/cloudbank/64qgtiio/frontend-react-springboot:0.1
+          imagePullPolicy: Always
+          env:
+            - name: CLOUDBANK_SECURITY_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: cloudbank-password
+                  key: password
+                  optional: true
+            - name: CLOUDBANK_SECURITY_USERNAME
+              value: cloudbank
+            - name: CLOUDBANK_APIS_BANKA
+              value: http://banka.cloudbank:8080
+            - name: CLOUDBANK_APIS_BANKB
+              value: http://bankb.cloudbank:8080
+          ports:
+            - containerPort: 8080
